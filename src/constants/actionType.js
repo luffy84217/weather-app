@@ -1,0 +1,22 @@
+const ACTION_TYPE = {
+    CITYS: {
+        ADD_CITY: 'ADD_CITY',
+        REMOVE_CITY: 'REMOVE_CITY'
+    },
+    SESSION: {
+        SIGN_IN: 'SIGN_IN',
+        SIGN_OUT: 'SIGN_OUT'
+    },
+    PROFILE: {
+        LOAD_PROFILE: 'LOAD_PROFILE',
+        UNLOAD_PROFILE: 'UNLOAD_PROFILE',
+        VALIDATE_LOCATION: 'VALIDATE_LOCATION',
+        UPDATE_LOCATION: 'UPDATE_LOCATION'
+    },
+    FETCH: {
+        GET_WEATHER: 'GET_WEATHER',
+        WEATHER_RECEIVED: 'WEATHER_RECEIVED'
+    }
+}
+
+export default ACTION_TYPE
