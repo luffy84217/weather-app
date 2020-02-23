@@ -2,8 +2,11 @@ import React from 'react'
 import locationSVG from '../assets/location.svg'
 import { $ } from '../utils'
 
-const Profile = props => {
-    let options = props.citys.map((city, i) => <option key={i} value={city}>{city}</option>)
+const Profile = ({
+    citys,
+    updateLocation
+}) => {
+    let options = citys.map((city, i) => <option key={i} value={city}>{city}</option>)
 
     return (
         <div className="container text-center">
@@ -16,7 +19,7 @@ const Profile = props => {
                     </select>
                 </div>
                 <button
-                    onClick={() => props.updateLocation($('#locationInput').options[$('#locationInput').selectedIndex].value)}
+                    onClick={() => updateLocation($('#locationInput').options[$('#locationInput').selectedIndex].value)}
                     className="btn btn-primary"
                 >
                     Update

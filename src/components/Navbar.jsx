@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = (props) => {
-    const signBtn = props.isAuthenticated ?
-        <Link to="/" className="btn btn-outline-primary" onClick={() => props.signOut(props.history.push, '/')}>Sign out</Link> :
+const Navbar = ({
+    history,
+    profile,
+    isAuthenticated,
+    signOut
+}) => {
+    const signBtn = isAuthenticated ?
+        <Link to="/" className="btn btn-outline-primary" onClick={() => signOut(history.push, '/')}>Sign out</Link> :
         <Link to="/login" className="btn btn-outline-primary">Sign in</Link>
     
     return (
@@ -12,9 +17,9 @@ const Navbar = (props) => {
                 <Link to="/">Weather App</Link>
             </h5>
             <nav className="my-2 my-md-0 mr-md-3">
-                {props.isAuthenticated ? <Link to="/forecast" className="p-2 text-dark">Forecast</Link> : null}
-                {props.profile.isAdmin ? <Link to="/dashboard" className="p-2 text-dark">Dashboard</Link> : null}
-                {props.isAuthenticated ? <Link to="/profile" className="p-2 text-dark">Profile</Link> : null}
+                {isAuthenticated ? <Link to="/forecast" className="p-2 text-dark">Forecast</Link> : null}
+                {profile.isAdmin ? <Link to="/dashboard" className="p-2 text-dark">Dashboard</Link> : null}
+                {isAuthenticated ? <Link to="/profile" className="p-2 text-dark">Profile</Link> : null}
             </nav>
             {signBtn}
         </div>

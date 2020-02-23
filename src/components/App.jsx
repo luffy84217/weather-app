@@ -9,40 +9,52 @@ import Profile from './Profile'
 import Dashboard from './Dashboard'
 import Public from './Public'
 
-const App = (props) => {
+const App = ({
+    history,
+    citys,
+    profile,
+    isAuthenticated,
+    forecast,
+    handleSignInClick,
+    handleSignOutClick,
+    handleAddCityClick,
+    handleRemoveCityClick,
+    handleUpdateLocationClick,
+    handleGetWeather
+}) => {
     return (
         <div>
             <Navbar
-                history={props.history}
-                profile={props.profile}
-                isAuthenticated={props.isAuthenticated}
-                signOut={props.handleSignOutClick}
+                history={history}
+                profile={profile}
+                isAuthenticated={isAuthenticated}
+                signOut={handleSignOutClick}
             />
             <Switch>
-                <AdminRoute isAdmin={props.profile.isAdmin} path="/dashboard">
+                <AdminRoute isAdmin={profile.isAdmin} path="/dashboard">
                     <Dashboard
-                        citys={props.citys}
-                        addCity={props.handleAddCityClick}
-                        removeCity={props.handleRemoveCityClick}
+                        citys={citys}
+                        addCity={handleAddCityClick}
+                        removeCity={handleRemoveCityClick}
                     />
                 </AdminRoute>
-                <UserRoute isAuthenticated={props.isAuthenticated} path="/forecast">
+                <UserRoute isAuthenticated={isAuthenticated} path="/forecast">
                     <Forecast
-                        location={props.profile.location}
-                        getWeather={props.handleGetWeather}
-                        forecast={props.forecast}
+                        location={profile.location}
+                        getWeather={handleGetWeather}
+                        forecast={forecast}
                     />
                 </UserRoute>
-                <UserRoute isAuthenticated={props.isAuthenticated} path="/profile">
+                <UserRoute isAuthenticated={isAuthenticated} path="/profile">
                     <Profile
-                        citys={props.citys}
-                        updateLocation={props.handleUpdateLocationClick}
+                        citys={citys}
+                        updateLocation={handleUpdateLocationClick}
                     />
                 </UserRoute>
                 <Route path="/login">
-                    {props.isAuthenticated ?
+                    {isAuthenticated ?
                         <Redirect to="/" /> :
-                        <LoginForm history={props.history} signIn={props.handleSignInClick} />}
+                        <LoginForm history={history} signIn={handleSignInClick} />}
                 </Route>
                 <Route path="/" component={Public} />
             </Switch>

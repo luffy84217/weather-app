@@ -2,11 +2,15 @@ import React from 'react'
 import worldSVG from '../assets/world.svg'
 import { $ } from '../utils'
 
-const Dashboard = props => {
-    let cityList = props.citys.map((city, i) =>
+const Dashboard = ({
+    citys,
+    addCity,
+    removeCity
+}) => {
+    let cityList = citys.map((city, i) =>
         <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
             {city}
-            <span onClick={() => props.removeCity(city)} className="badge badge-danger badge-pill">X</span>
+            <span onClick={() => removeCity(city)} className="badge badge-danger badge-pill">X</span>
         </li>
     )
 
@@ -18,7 +22,7 @@ const Dashboard = props => {
                     <label htmlFor="cityInput" className="sr-only">City: </label>
                     <input type="text" className="form-control" id="cityInput" placeholder="City Name" />
                 </div>
-            <button onClick={() => props.addCity($('#cityInput').value)} className="btn btn-primary mb-2">Add</button>
+            <button onClick={() => addCity($('#cityInput').value)} className="btn btn-primary mb-2">Add</button>
             </form>
             <hr />
             <ul className="list-group">

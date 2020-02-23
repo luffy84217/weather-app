@@ -1,7 +1,10 @@
 import React from 'react'
 import { $ } from '../utils'
 
-const LoginForm = (props) => {
+const LoginForm = ({
+    history,
+    signIn
+}) => {
     return (
         <div className="container text-center">
             <img className="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
@@ -17,10 +20,10 @@ const LoginForm = (props) => {
             </div>
             <button
                 className="btn btn-lg btn-primary btn-block"
-                onClick={() => props.signIn(
+                onClick={() => signIn(
                     $('#inputUsername').value,
                     $('#inputPassword').value,
-                    props.history.push,
+                    history.push,
                     '/'
                 )}
             >
